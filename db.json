@@ -1,0 +1,76 @@
+{
+  "dishes": [
+    {
+      "id": 1,
+      "nombre": "Small wood-fired Pizza",
+      "precio": 30,
+      "categoria": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Medium wood-fired Pizza",
+      "precio": 50,
+      "categoria": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Lemon Pie Slice",
+      "precio": 30,
+      "categoria": 3
+    },
+    {
+      "id": 4,
+      "nombre": "Chocolate Cake Slice",
+      "precio": 30,
+      "categoria": 3
+    },
+    {
+      "id": 5,
+      "nombre": "Orange Juice",
+      "precio": 15,
+      "categoria": 2
+    },
+    {
+      "id": 6,
+      "nombre": "Big wood-fired Pizza",
+      "precio": 70,
+      "categoria": 1
+    },
+    {
+      "id": 7,
+      "nombre": "Rib Eye 800g",
+      "precio": 100,
+      "categoria": 1
+    },
+    {
+      "id": 8,
+      "nombre": "Strawberry Juice",
+      "precio": 15,
+      "categoria": 2
+    },
+    {
+      "id": 9,
+      "nombre": "Tequila",
+      "precio": 40,
+      "categoria": 2
+    },
+    {
+      "id": 10,
+      "nombre": "Cheese Pie Slice",
+      "precio": 30,
+      "categoria": 3
+    },
+    {
+      "id": 11,
+      "nombre": "American Coffee",
+      "precio": 20,
+      "categoria": 2
+    },
+    {
+      "id": 12,
+      "nombre": "Cappuccino Coffee",
+      "precio": 40,
+      "categoria": 2
+    }
+  ]
+}

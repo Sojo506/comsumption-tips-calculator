@@ -1,0 +1,23 @@
+{
+  "name": "40-proyecto-calculadora-de-propinas-con-json-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sojo506/comsumption-tips-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sojo506/comsumption-tips-calculator/issues"
+  },
+  "homepage": "https://github.com/Sojo506/comsumption-tips-calculator#readme",
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
+}
