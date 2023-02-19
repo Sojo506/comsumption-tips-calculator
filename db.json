@@ -2,75 +2,81 @@
   "dishes": [
     {
       "id": 1,
-      "nombre": "Small wood-fired Pizza",
-      "precio": 30,
-      "categoria": 1
+      "name": "Small wood-fired Pizza",
+      "price": 30,
+      "category": 1
     },
     {
       "id": 2,
-      "nombre": "Medium wood-fired Pizza",
-      "precio": 50,
-      "categoria": 1
+      "name": "Medium wood-fired Pizza",
+      "price": 50,
+      "category": 1
     },
     {
       "id": 3,
-      "nombre": "Lemon Pie Slice",
-      "precio": 30,
-      "categoria": 3
+      "name": "Lemon Pie Slice",
+      "price": 30,
+      "category": 3
     },
     {
       "id": 4,
-      "nombre": "Chocolate Cake Slice",
-      "precio": 30,
-      "categoria": 3
+      "name": "Chocolate Cake Slice",
+      "price": 30,
+      "category": 3
     },
     {
       "id": 5,
-      "nombre": "Orange Juice",
-      "precio": 15,
-      "categoria": 2
+      "name": "Orange Juice",
+      "price": 15,
+      "category": 2
     },
     {
       "id": 6,
-      "nombre": "Big wood-fired Pizza",
-      "precio": 70,
-      "categoria": 1
+      "name": "Big wood-fired Pizza",
+      "price": 70,
+      "category": 1
     },
     {
       "id": 7,
-      "nombre": "Rib Eye 800g",
-      "precio": 100,
-      "categoria": 1
+      "name": "Rib Eye 800g",
+      "price": 100,
+      "category": 1
     },
     {
       "id": 8,
-      "nombre": "Strawberry Juice",
-      "precio": 15,
-      "categoria": 2
+      "name": "Strawberry Juice",
+      "price": 15,
+      "category": 2
     },
     {
       "id": 9,
-      "nombre": "Tequila",
-      "precio": 40,
-      "categoria": 2
+      "name": "Tequila",
+      "price": 40,
+      "category": 2
     },
     {
       "id": 10,
-      "nombre": "Cheese Pie Slice",
-      "precio": 30,
-      "categoria": 3
+      "name": "Cheese Pie Slice",
+      "price": 30,
+      "category": 3
     },
     {
       "id": 11,
-      "nombre": "American Coffee",
-      "precio": 20,
-      "categoria": 2
+      "name": "American Coffee",
+      "price": 20,
+      "category": 2
     },
     {
       "id": 12,
-      "nombre": "Cappuccino Coffee",
-      "precio": 40,
-      "categoria": 2
+      "name": "Cappuccino Coffee",
+      "price": 40,
+      "category": 2
+    },
+    {
+      "id": 13,
+      "name": "Vanilla Coffee",
+      "price": 34,
+      "category": 2
     }
   ]
 }

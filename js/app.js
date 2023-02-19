@@ -4,6 +4,12 @@ let client = {
   order: [],
 };
 
+const categories = {
+  1: "Food",
+  2: "Drinks",
+  3: "Desserts",
+};
+
 const btnSafaClient = document
   .querySelector("#safe-client")
   .addEventListener("click", safeClient);
@@ -37,6 +43,9 @@ function safeClient() {
     return;
   }
 
+  document.querySelector("#table").value = "";
+  document.querySelector("#hour").value = "";
+
   // take data
   client = { ...client, table, hour };
 
@@ -64,6 +73,44 @@ function getDishes() {
 
   fetch(url)
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => showDishes(data))
     .catch((error) => console.log(error));
+}
+
+function showDishes(dishes) {
+  const content = document.querySelector("#dishes .content");
+
+  dishes.forEach((dish) => {
+    const row = document.createElement("DIV");
+    row.classList.add("row", "py-3", "border-top");
+
+    const name = document.createElement("DIV");
+    name.classList.add("col-md-4");
+    name.textContent = dish.name;
+
+    const price = document.createElement("DIV");
+    price.classList.add("col-md-3", "fw-bold");
+    price.textContent = `$ ${dish.price}`;
+
+    const category = document.createElement("DIV");
+    category.classList.add("col-md-3");
+    category.textContent = categories[dish.category];
+
+    const quantityInput = document.createElement("INPUT");
+    quantityInput.type = "number";
+    quantityInput.min = 0;
+    quantityInput.value = 0;
+    quantityInput.id = `product-${dish.id}`;
+    quantityInput.classList.add("form-control");
+
+    const addInput = document.createElement("DIV");
+    addInput.classList.add("col-md-2");
+    addInput.appendChild(quantityInput);
+
+    row.appendChild(name);
+    row.appendChild(price);
+    row.appendChild(category);
+    row.appendChild(addInput);
+    content.appendChild(row);
+  });
 }
