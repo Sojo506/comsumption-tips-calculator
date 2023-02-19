@@ -106,6 +106,7 @@ function showDishes(dishes) {
     const addInput = document.createElement("DIV");
     addInput.classList.add("col-md-2");
     addInput.appendChild(quantityInput);
+    addInput.onchange = (e) => addDish({ ...dish, quantity: e.target.value });
 
     row.appendChild(name);
     row.appendChild(price);
@@ -113,4 +114,18 @@ function showDishes(dishes) {
     row.appendChild(addInput);
     content.appendChild(row);
   });
+}
+
+function addDish(product) {
+  let { order } = client;
+
+  if (product.quantity > 0) {
+    const checkOrder = order.findIndex((o) => o.id === product.id);
+
+    if (checkOrder >= 0) order[checkOrder].quantity = product.quantity;
+    else client.order = [...order, product];
+
+  } else {
+    client.order = [...order.filter((o) => o.id !== product.id)];
+  }
 }
