@@ -43,8 +43,8 @@ function safeClient() {
     return;
   }
 
-  document.querySelector("#table").value = "";
-  document.querySelector("#hour").value = "";
+  /* document.querySelector("#table").value = "";
+  document.querySelector("#hour").value = ""; */
 
   // take data
   client = { ...client, table, hour };
@@ -54,7 +54,6 @@ function safeClient() {
   const bootstrapModal = bootstrap.Modal.getInstance(formModal);
 
   bootstrapModal.hide();
-  client = { ...client, table: "", hour: "" };
 
   // show Secctions
   showSecctions();
@@ -124,8 +123,57 @@ function addDish(product) {
 
     if (checkOrder >= 0) order[checkOrder].quantity = product.quantity;
     else client.order = [...order, product];
-
   } else {
     client.order = [...order.filter((o) => o.id !== product.id)];
+  }
+
+  // clean last summary
+  cleanHTML();
+
+  // show summary
+  updateSummary();
+}
+
+function updateSummary() {
+  const content = document.querySelector("#summary .content");
+
+  const summary = document.createElement("DIV");
+  summary.classList.add("col-md-6", 'card', 'py-5', 'px-3', 'shadow');
+
+  const table = document.createElement("P");
+  table.textContent = "Table: ";
+  table.classList.add("fw-bold");
+
+  const tableSpan = document.createElement("SPAN");
+  tableSpan.textContent = client.table;
+  tableSpan.classList.add("fw-normal");
+
+  const hour = document.createElement("P");
+  hour.textContent = "Hour: ";
+  hour.classList.add("fw-bold");
+
+  const hourSpan = document.createElement("SPAN");
+  hourSpan.textContent = client.hour;
+  hourSpan.classList.add("fw-normal");
+
+  table.appendChild(tableSpan);
+  hour.appendChild(hourSpan);
+
+  // title
+  const heading = document.createElement('H3')
+  heading.textContent = 'Dishes Consumed'
+  heading.classList.add('my-4', 'text-center')
+
+  summary.appendChild(table);
+  summary.appendChild(hour);
+  summary.appendChild(heading);
+
+  content.appendChild(summary);
+}
+
+function cleanHTML() {
+  const content = document.querySelector("#summary .content");
+  while (content.firstChild) {
+    content.removeChild(content.firstChild);
   }
 }
