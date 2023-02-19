@@ -48,11 +48,22 @@ function safeClient() {
   client = { ...client, table: "", hour: "" };
 
   // show Secctions
-  showSecctions()
+  showSecctions();
+
+  // get API dishes
+  getDishes();
 }
 
 function showSecctions() {
-  const hideSecctions = document.querySelectorAll('.d-none')
-  hideSecctions.forEach(secction => secction.classList.remove('d-none'))
+  const hideSecctions = document.querySelectorAll(".d-none");
+  hideSecctions.forEach((secction) => secction.classList.remove("d-none"));
+}
 
+function getDishes() {
+  const url = "http://localhost:3000/dishes";
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
 }
