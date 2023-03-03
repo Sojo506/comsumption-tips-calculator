@@ -138,7 +138,7 @@ function updateSummary() {
   const content = document.querySelector("#summary .content");
 
   const summary = document.createElement("DIV");
-  summary.classList.add("col-md-6", 'card', 'py-5', 'px-3', 'shadow');
+  summary.classList.add("col-md-6", "card", "py-5", "px-3", "shadow");
 
   const table = document.createElement("P");
   table.textContent = "Table: ";
@@ -160,13 +160,60 @@ function updateSummary() {
   hour.appendChild(hourSpan);
 
   // title
-  const heading = document.createElement('H3')
-  heading.textContent = 'Dishes Consumed'
-  heading.classList.add('my-4', 'text-center')
+  const heading = document.createElement("H3");
+  heading.textContent = "Dishes Consumed";
+  heading.classList.add("my-4", "text-center");
 
+  // go throught the order's array
+  const group = document.createElement("UL");
+  group.classList.add("list-group");
+
+  const { order } = client;
+  order.forEach((article) => {
+    const { id, name, quantity, price } = article;
+
+    const list = document.createElement("LI");
+    list.classList.add("list-group-item");
+
+    const articleName = document.createElement("H4");
+    articleName.classList.add("my-4");
+    articleName.textContent = name;
+
+    //QUANTITY
+    const articleQuantity = document.createElement("P");
+    articleQuantity.classList.add("fw-bold");
+    articleQuantity.textContent = "Quantity: ";
+
+    const articleQuantityValue = document.createElement("SPAN");
+    articleQuantityValue.classList.add("fw-normal");
+    articleQuantityValue.textContent = quantity;
+
+    // PRICE
+    const articlePrice = document.createElement("P");
+    articlePrice.classList.add("fw-bold");
+    articlePrice.textContent = "Price: ";
+
+    const articlePriceValue = document.createElement("SPAN");
+    articlePriceValue.classList.add("fw-normal");
+    articlePriceValue.textContent = `$${price}`;
+
+    articleQuantity.appendChild(articleQuantityValue);
+    articlePrice.appendChild(articlePriceValue);
+
+    // add elements to the LI
+    list.appendChild(articleName);
+    list.appendChild(articleQuantity);
+    list.appendChild(articlePrice);
+
+    // add list to the main group
+    group.appendChild(list);
+  });
+
+  // add content
   summary.appendChild(table);
   summary.appendChild(hour);
   summary.appendChild(heading);
+  summary.appendChild(group);
 
   content.appendChild(summary);
 }
