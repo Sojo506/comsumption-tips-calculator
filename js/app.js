@@ -143,7 +143,10 @@ function updateSummary() {
   const content = document.querySelector("#summary .content");
 
   const summary = document.createElement("DIV");
-  summary.classList.add("col-md-6", "card", "py-2", "px-3", "shadow");
+  summary.classList.add("col-md-6");
+
+  const summaryDiv = document.createElement("DIV");
+  summaryDiv.classList.add("card", "py-2", "px-3", "shadow");
 
   const table = document.createElement("P");
   table.textContent = "Table: ";
@@ -176,42 +179,42 @@ function updateSummary() {
   const { order } = client;
 
   // add orders
-  order.forEach((article) => {
-    const { id, name, quantity, price } = article;
+  order.forEach((dish) => {
+    const { id, name, quantity, price } = dish;
 
     const list = document.createElement("LI");
     list.classList.add("list-group-item");
 
-    const articleName = document.createElement("H4");
-    articleName.classList.add("my-4");
-    articleName.textContent = name;
+    const dishName = document.createElement("H4");
+    dishName.classList.add("my-4");
+    dishName.textContent = name;
 
     //QUANTITY
-    const articleQuantity = document.createElement("P");
-    articleQuantity.classList.add("fw-bold");
-    articleQuantity.textContent = "Quantity: ";
+    const dishQuantity = document.createElement("P");
+    dishQuantity.classList.add("fw-bold");
+    dishQuantity.textContent = "Quantity: ";
 
-    const articleQuantityValue = document.createElement("SPAN");
-    articleQuantityValue.classList.add("fw-normal");
-    articleQuantityValue.textContent = quantity;
+    const dishQuantityValue = document.createElement("SPAN");
+    dishQuantityValue.classList.add("fw-normal");
+    dishQuantityValue.textContent = quantity;
 
     // PRICE
-    const articlePrice = document.createElement("P");
-    articlePrice.classList.add("fw-bold");
-    articlePrice.textContent = "Price: ";
+    const dishPrice = document.createElement("P");
+    dishPrice.classList.add("fw-bold");
+    dishPrice.textContent = "Price: ";
 
-    const articlePriceValue = document.createElement("SPAN");
-    articlePriceValue.classList.add("fw-normal");
-    articlePriceValue.textContent = `$${price}`;
+    const dishPriceValue = document.createElement("SPAN");
+    dishPriceValue.classList.add("fw-normal");
+    dishPriceValue.textContent = `$${price}`;
 
     // SUBTOTAL (price * quantity)
-    const subTotalArticle = document.createElement("P");
-    subTotalArticle.classList.add("fw-bold");
-    subTotalArticle.textContent = "Subtotal: ";
+    const subTotalDish = document.createElement("P");
+    subTotalDish.classList.add("fw-bold");
+    subTotalDish.textContent = "Subtotal: ";
 
-    const subTotalArticleValue = document.createElement("SPAN");
-    subTotalArticleValue.classList.add("fw-normal");
-    subTotalArticleValue.textContent = calculateSubtotal(price, quantity);
+    const subTotalDishValue = document.createElement("SPAN");
+    subTotalDishValue.classList.add("fw-normal");
+    subTotalDishValue.textContent = `$${calculateSubtotal(price, quantity)}`;
 
     // buton to delete
     const btnDelete = document.createElement("BUTTON");
@@ -223,15 +226,15 @@ function updateSummary() {
     };
 
     // add children to their parents
-    articleQuantity.appendChild(articleQuantityValue);
-    articlePrice.appendChild(articlePriceValue);
-    subTotalArticle.appendChild(subTotalArticleValue);
+    dishQuantity.appendChild(dishQuantityValue);
+    dishPrice.appendChild(dishPriceValue);
+    subTotalDish.appendChild(subTotalDishValue);
 
     // add elements to the LI
-    list.appendChild(articleName);
-    list.appendChild(articleQuantity);
-    list.appendChild(articlePrice);
-    list.appendChild(subTotalArticle);
+    list.appendChild(dishName);
+    list.appendChild(dishQuantity);
+    list.appendChild(dishPrice);
+    list.appendChild(subTotalDish);
     list.appendChild(btnDelete);
 
     // add list to the main group
@@ -239,10 +242,12 @@ function updateSummary() {
   });
 
   // add content
-  summary.appendChild(heading);
-  summary.appendChild(table);
-  summary.appendChild(hour);
-  summary.appendChild(group);
+  summaryDiv.appendChild(heading);
+  summaryDiv.appendChild(table);
+  summaryDiv.appendChild(hour);
+  summaryDiv.appendChild(group);
+
+  summary.appendChild(summaryDiv);
 
   content.appendChild(summary);
 
@@ -258,7 +263,7 @@ function cleanHTML() {
 }
 
 function calculateSubtotal(price, quantity) {
-  return `$${price * quantity}`;
+  return price * quantity;
 }
 
 function deleteOrder(id) {
@@ -313,6 +318,7 @@ function tipsForm() {
   radio10.name = "tip";
   radio10.value = "10";
   radio10.classList.add("form-check-input");
+  radio10.onclick = calculateTip;
 
   const radio10Label = document.createElement("LABEL");
   radio10Label.textContent = "10%";
@@ -329,6 +335,7 @@ function tipsForm() {
   radio25.name = "tip";
   radio25.value = "25";
   radio25.classList.add("form-check-input");
+  radio25.onclick = calculateTip;
 
   const radio25Label = document.createElement("LABEL");
   radio25Label.textContent = "25%";
@@ -345,6 +352,7 @@ function tipsForm() {
   radio50.name = "tip";
   radio50.value = "50";
   radio50.classList.add("form-check-input");
+  radio50.onclick = calculateTip;
 
   const radio50Label = document.createElement("LABEL");
   radio50Label.textContent = "50%";
@@ -364,4 +372,24 @@ function tipsForm() {
   form.appendChild(divForm);
 
   content.appendChild(form);
+}
+
+function calculateTip() {
+  const { order } = client;
+  let subtotal = 0;
+
+  // calculate subtotal
+  order.forEach((dish) => {
+    const { price, quantity } = dish;
+    subtotal += calculateSubtotal(price, quantity);
+  });
+
+  // select tip
+  const tipSelected = document.querySelector('[name="tip"]:checked').value;
+
+  // calculate tip
+  const tip = (subtotal * parseInt(tipSelected)) / 100;
+
+  // calculate total
+  const total = subtotal + tip;
 }
