@@ -169,6 +169,8 @@ function updateSummary() {
   group.classList.add("list-group");
 
   const { order } = client;
+
+  // add orders
   order.forEach((article) => {
     const { id, name, quantity, price } = article;
 
@@ -197,13 +199,35 @@ function updateSummary() {
     articlePriceValue.classList.add("fw-normal");
     articlePriceValue.textContent = `$${price}`;
 
+    // SUBTOTAL (price * quantity)
+    const subTotalArticle = document.createElement("P");
+    subTotalArticle.classList.add("fw-bold");
+    subTotalArticle.textContent = "Subtotal: ";
+
+    const subTotalArticleValue = document.createElement("SPAN");
+    subTotalArticleValue.classList.add("fw-normal");
+    subTotalArticleValue.textContent = calculateSubtotal(price, quantity);
+
+    // buton to delete
+    const btnDelete = document.createElement("BUTTON");
+    btnDelete.classList.add("btn", "btn-danger");
+    btnDelete.textContent = "Delete order";
+    // function to delete order
+    btnDelete.onclick = () => {
+      deleteOrder(id);
+    };
+
+    // add children to their parents
     articleQuantity.appendChild(articleQuantityValue);
     articlePrice.appendChild(articlePriceValue);
+    subTotalArticle.appendChild(subTotalArticleValue);
 
     // add elements to the LI
     list.appendChild(articleName);
     list.appendChild(articleQuantity);
     list.appendChild(articlePrice);
+    list.appendChild(subTotalArticle);
+    list.appendChild(btnDelete);
 
     // add list to the main group
     group.appendChild(list);
@@ -223,4 +247,20 @@ function cleanHTML() {
   while (content.firstChild) {
     content.removeChild(content.firstChild);
   }
+}
+
+function calculateSubtotal(price, quantity) {
+  return `$${price * quantity}`;
+}
+
+function deleteOrder(id) {
+  const { order } = client;
+  const result = order.filter((article) => article.id !== id);
+  client.order = [...result];
+
+  // clean last summary
+  cleanHTML();
+
+  // show new summary
+  updateSummary();
 }
