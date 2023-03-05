@@ -143,7 +143,7 @@ function updateSummary() {
   const content = document.querySelector("#summary .content");
 
   const summary = document.createElement("DIV");
-  summary.classList.add("col-md-6", "card", "py-5", "px-3", "shadow");
+  summary.classList.add("col-md-6", "card", "py-2", "px-3", "shadow");
 
   const table = document.createElement("P");
   table.textContent = "Table: ";
@@ -239,12 +239,15 @@ function updateSummary() {
   });
 
   // add content
+  summary.appendChild(heading);
   summary.appendChild(table);
   summary.appendChild(hour);
-  summary.appendChild(heading);
   summary.appendChild(group);
 
   content.appendChild(summary);
+
+  // show tips form
+  tipsForm();
 }
 
 function cleanHTML() {
@@ -288,4 +291,23 @@ function emptyOder() {
   text.textContent = "Add the order elements";
 
   content.appendChild(text);
+}
+
+function tipsForm() {
+  const content = document.querySelector("#summary .content");
+
+  const form = document.createElement("DIV");
+  form.classList.add("col-md-6", "form");
+
+  const divForm = document.createElement("DIV");
+  divForm.classList.add("card", "py-2", "px-3", "shadow");
+
+  const heading = document.createElement("H3");
+  heading.classList.add("my-4", 'text-center');
+  heading.textContent = "Tip";
+
+  divForm.appendChild(heading);
+  form.appendChild(divForm);
+
+  content.appendChild(form);
 }
