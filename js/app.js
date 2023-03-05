@@ -303,10 +303,64 @@ function tipsForm() {
   divForm.classList.add("card", "py-2", "px-3", "shadow");
 
   const heading = document.createElement("H3");
-  heading.classList.add("my-4", 'text-center');
+  heading.classList.add("my-4", "text-center");
   heading.textContent = "Tip";
 
+  // radio btns
+  // 10%
+  const radio10 = document.createElement("INPUT");
+  radio10.type = "radio";
+  radio10.name = "tip";
+  radio10.value = "10";
+  radio10.classList.add("form-check-input");
+
+  const radio10Label = document.createElement("LABEL");
+  radio10Label.textContent = "10%";
+  radio10Label.classList.add("form-check-label");
+
+  const radio10Div = document.createElement("DIV");
+  radio10Div.classList.add("form-check");
+
+  radio10Div.appendChild(radio10);
+  radio10Div.appendChild(radio10Label);
+  // 28%
+  const radio25 = document.createElement("INPUT");
+  radio25.type = "radio";
+  radio25.name = "tip";
+  radio25.value = "25";
+  radio25.classList.add("form-check-input");
+
+  const radio25Label = document.createElement("LABEL");
+  radio25Label.textContent = "25%";
+  radio25Label.classList.add("form-check-label");
+
+  const radio25Div = document.createElement("DIV");
+  radio25Div.classList.add("form-check");
+
+  radio25Div.appendChild(radio25);
+  radio25Div.appendChild(radio25Label);
+  // 50%
+  const radio50 = document.createElement("INPUT");
+  radio50.type = "radio";
+  radio50.name = "tip";
+  radio50.value = "50";
+  radio50.classList.add("form-check-input");
+
+  const radio50Label = document.createElement("LABEL");
+  radio50Label.textContent = "50%";
+  radio50Label.classList.add("form-check-label");
+
+  const radio50Div = document.createElement("DIV");
+  radio50Div.classList.add("form-check");
+
+  radio50Div.appendChild(radio50);
+  radio50Div.appendChild(radio50Label);
+
   divForm.appendChild(heading);
+  divForm.appendChild(radio10Div);
+  divForm.appendChild(radio25Div);
+  divForm.appendChild(radio50Div);
+
   form.appendChild(divForm);
 
   content.appendChild(form);
