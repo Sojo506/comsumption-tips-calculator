@@ -130,8 +130,13 @@ function addDish(product) {
   // clean last summary
   cleanHTML();
 
-  // show summary
-  updateSummary();
+  if (client.order.length) {
+    // show summary
+    updateSummary();
+  } else {
+    // add message
+    emptyOder();
+  }
 }
 
 function updateSummary() {
@@ -261,6 +266,26 @@ function deleteOrder(id) {
   // clean last summary
   cleanHTML();
 
-  // show new summary
-  updateSummary();
+  if (client.order.length) {
+    // show summary
+    updateSummary();
+  } else {
+    // add message
+    emptyOder();
+  }
+
+  // product delete, reset input
+  const productInput = `#product-${id}`;
+  const productDeleted = document.querySelector(productInput);
+  productDeleted.value = 0;
+}
+
+function emptyOder() {
+  const content = document.querySelector("#summary .content");
+
+  const text = document.createElement("P");
+  text.classList.add("text-center");
+  text.textContent = "Add the order elements";
+
+  content.appendChild(text);
 }
