@@ -392,4 +392,57 @@ function calculateTip() {
 
   // calculate total
   const total = subtotal + tip;
+
+  showTotalHTML(subtotal, total, tip);
+}
+
+function showTotalHTML(subtotal, total, tip) {
+  const resultDiv = document.createElement("DIV");
+  resultDiv.classList.add("pay-total", "my-4");
+
+  // subtotal
+  const subtotalParagraph = document.createElement("P");
+  subtotalParagraph.classList.add("fs-2", "fw-bold", "mt-2");
+  subtotalParagraph.textContent = "Subtotal: ";
+
+  const subtotalSpan = document.createElement("SPAN");
+  subtotalSpan.classList.add("fw-normal");
+  subtotalSpan.textContent = `$${subtotal}`;
+
+  subtotalParagraph.appendChild(subtotalSpan);
+
+  // tip
+  const tipParagraph = document.createElement("P");
+  tipParagraph.classList.add("fs-2", "fw-bold", "mt-2");
+  tipParagraph.textContent = "Tip: ";
+
+  const tipSpan = document.createElement("SPAN");
+  tipSpan.classList.add("fw-normal");
+  tipSpan.textContent = `$${tip}`;
+
+  tipParagraph.appendChild(tipSpan);
+
+  // total
+  const totalParagraph = document.createElement("P");
+  totalParagraph.classList.add("fs-2", "fw-bold", "mt-2");
+  totalParagraph.textContent = "Total: ";
+
+  const totalSpan = document.createElement("SPAN");
+  totalSpan.classList.add("fw-normal");
+  totalSpan.textContent = `$${total}`;
+
+  totalParagraph.appendChild(totalSpan);
+
+  // delete the last result
+  const payDiv = document.querySelector(".pay-total");
+  if (payDiv) {
+    payDiv.remove();
+  }
+
+  resultDiv.appendChild(subtotalParagraph);
+  resultDiv.appendChild(tipParagraph);
+  resultDiv.appendChild(totalParagraph);
+
+  const form = document.querySelector(".form > div");
+  form.appendChild(resultDiv);
 }
